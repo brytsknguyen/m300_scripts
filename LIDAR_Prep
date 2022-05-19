@@ -4,22 +4,21 @@ source /home/nuc/catkin_driver_ws/devel/setup.bash
 
 
 # Launch the livox
-xterm -geometry 80x20+0+430 -e "roslaunch livox_ros_driver livox_lidar_msg.launch bd_list:='3GGDJ5S0010017'" & sleep 2
+xterm -T "Launch Livox" -geometry 80x20+0+0 -e "roslaunch livox_ros_driver livox_lidar_msg.launch bd_list:='3GGDJ5S0010017'" & sleep 2
 # Adjust the rviz window
-(sleep 5; wmctrl -r 'display_lidar_points.rviz - RViz' -e '0,1045,361,884,757')
+(sleep 3; wmctrl -r 'display_lidar_points.rviz - RViz' -e '0,1045,361,884,757') #Adjust the position of rviz
 
 # Launch the dji osdk
-xterm -geometry 80x20+0+720 -e "roslaunch dji_osdk_ros dji_vehicle_node.launch" & sleep 2
+xterm -T "Launch OSDK" -geometry 80x20+0+320 -e "roslaunch dji_osdk_ros dji_vehicle_node.launch" & sleep 2
 # Call the camera service
-(sleep 10; rosservice call /stereo_vga_subscription '{vga_freq: 0, front_vga: 1, unsubscribe_vga: 0}') & sleep 2
-
+(sleep 6; rosservice call /stereo_vga_subscription '{vga_freq: 0, front_vga: 1, unsubscribe_vga: 0}') & sleep 2 #Auto enable the dji stereo
 
 #xterm -geometry 80x20+0+590 -e "source ~/dev_ws/devel/setup.bash && roslaunch nlink_parser linktrack_atv.launch" & sleep 2
 
 xterm -T "Subscribed topics" -fa 'Monospace' -fs 18 -geometry 98x08+610+0 -e "rostopic hz /dji_osdk_ros/stereo_vga_front_left_images /dji_osdk_ros/stereo_vga_front_right_images /dji_osdk_ros/imu /livox/lidar" & sleep 2
-(sleep 5; wmctrl -r 'Subscribed topics' -e '0,568,0,1362,236')
+(sleep 3; wmctrl -r 'Subscribed topics' -e '0,568,0,1362,236') #Adjust the window for subscription status
 
 # Launch and position the window
 xterm -T "rqt_image_view xterm" -fa 'Monospace' -fs 18 -geometry 5x5+0+0 -e "rqt_image_view" & sleep 2
-(sleep 5; wmctrl -r 'rqt_image_view__ImageView - rqt' -e '0,561,362,485,756' \
-       && wmctrl -r 'rqt_image_view xterm' -e '0,68,1080,172,05')
+(sleep 3; wmctrl -r 'rqt_image_view__ImageView - rqt' -e '0,561,362,485,756' \
+       & wmctrl -r 'rqt_image_view xterm' -e '0,68,1080,172,05') #Adjust the rqt view
