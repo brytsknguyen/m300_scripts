@@ -1,0 +1,21 @@
+#!/bin/bash
+source /opt/ros/kinetic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+
+
+# Reduce latency in the FTDI serial-USB kernel driver to 1ms
+# This is required due to https://github.com/torvalds/linux/commit/c6dce262
+#for file in $(ls /sys/bus/usb-serial/devices/); do
+#  value=`cat /sys/bus/usb-serial/devices/$file/latency_timer`
+#  if [ $value -gt 1 ]; then
+#    echo "Setting low_latency mode for $file"
+#    sudo sh -c "echo 1 > /sys/bus/usb-serial/devices/$file/latency_timer"
+#  fi
+#done
+
+
+#xterm -geometry 80x36+0+0 -e "/home/snake/library/voice/simple-google-tts/simple_google_tts en 'killing script'" &
+#xterm -geometry 80x36+0+0 -e "/home/snake/Desktop/project_vins/voices/stopdrone.sh" & sleep 1
+xterm -geometry 80x36+0+0 -e "rosnode kill -a" & sleep 3
+killall xterm
+

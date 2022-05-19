@@ -1,0 +1,8 @@
+#!/bin/bash
+source /opt/ros/melodic/setup.bash 
+source ~/catkin_ws_drivers/devel/setup.bash
+
+
+xterm -e "roslaunch viral2 run_hhrig.launch" & sleep 1 
+
+

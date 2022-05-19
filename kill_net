@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+
+
+
+#xterm -hold -geometry 80x36+0+0 -e "nmcli con down static" & sleep 0.1 #added for flush does not remove existint connection directly
+#xterm -geometry 80x36+0+0 -e "nmcli con down static" & sleep 0.1 #added for flush does not remove existint connection directly
+xterm -geometry 80x36+0+0 -e "nmcli dev disconnect eno1" & sleep 0.1 #added for flush does not remove existint connection directly
+

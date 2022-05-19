@@ -1,0 +1,16 @@
+<launch>
+
+<node required="false" pkg="rosbag" type="record" name="mybag"
+      args=" -b 1024 -o /home/nuc/ssd/viral_ /uwb_endorange_info /uwb_exorange_info /node_pos_sc "
+           "/livox/lidar"
+           "/dji_osdk_ros/stereo_vga_front_left_images"
+           "/dji_osdk_ros/stereo_vga_front_right_images"
+           "/dji_osdk_ros/stereo_vga_front_left_images"
+           "/dji_osdk_ros/stereo_vga_front_left_images"
+           "/dji_osdk_ros/stereo_vga_front_left_images"
+           "/dji_osdk_ros/stereo_vga_front_left_images"
+           "/dji_osdk_ros/stereo_vga_front_left_images" />
+</launch>
+
+
+

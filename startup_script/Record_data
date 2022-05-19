@@ -1,0 +1,29 @@
+#!/bin/bash
+source /opt/ros/kinetic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+
+
+
+#xterm -geometry 80x36+0+0 -e "cd bags && taskset -c 6 rosbag record /imu/imu /right/image_raw /left/image_raw /os1_cloud_node1/imu /os1_cloud_node1/points /os1_cloud_node2/imu /os1_cloud_node2/points /dji_sdk/attitude /dji_sdk/gps_health /dji_sdk/gps_position /dji_sdk/height_above_takeoff /dji_sdk/imu /imu/magnetic_field /imu/temperature /uwb_endorange_info /uwb_exorange_info /node_pos_sc /node_pos_marker_sc /viral2_odometry/optimization_status /viral2_odometry/opt_odom /viral2_odometry/pred_odom" & sleep 1
+
+# xterm -geometry 80x36+0+0 -e "cd bags && taskset -c 6 rosbag record /imu/imu /right/image_raw /left/image_raw /os1_cloud_node1/imu /os1_cloud_node1/points /os1_cloud_node2/imu /os1_cloud_node2/points /dji_sdk/attitude /dji_sdk/gps_health /dji_sdk/gps_position /dji_sdk/height_above_takeoff /dji_sdk/imu /imu/magnetic_field /imu/temperature /uwb_endorange_info /uwb_exorange_info /node_pos_sc /node_pos_marker_sc __name:=my_bag" & sleep 1 
+
+xterm -geometry 80x36+0+0 -e "cd bags && taskset -c 6 roslaunch /home/dji/.startup_script/rosbag.launch" & sleep 1 
+
+#/viral2_odometry/optimization_status /viral2_odometry/opt_odom /viral2_odometry/pred_odom" & sleep 1
+
+#xterm -geometry 80x36+0+0 -e "roslaunch 'roslaunch dji_sdk sdk.launch'" & sleep 1 
+#xterm -geometry 80x36+0+0 -e "rosrun cvt_combine_image_into_one cvt_combine_image_into_one_node " & sleep 1
+#xterm -geometry 80x36+0+0 -e "rosrun stereo_camera_gpu stereo_camera_gpu_node" &  sleep 1
+#xterm -hold -geometry 80x36+0+0 -e "echo \' | sudo chmod 666 /dev/serial/by-id/usb-FTDI_USB-RS232_Cable_FT2QSUMP-if00-port0" & sleep 1
+#xterm -hold -geometry 80x36+0+0 -e "roslaunch imu_vn_100 vn_100_cont.launch" & sleep 1
+#xterm -hold -geometry 80x36+0+0 -e "rqt_image_view" & sleep 1
+#xterm -geometry 80x36+0+0 -e "roslaunch vins_estimator A3.launch" & sleep 1
+#xterm -geometry 80x36+0+0 -e "roslaunch '/home/snake/Desktop/octomap_mapping.launch'" & sleep 1
+#xterm -geometry 80x36+0+0 -e "roslaunch vins_estimator vins_rviz.launch" & sleep 1
+#xterm -geometry 80x36+0+0 -e "rosrun dji_sdk_demo demo_flight_control" & sleep 1
+#xterm -geometry 80x36+0+0 -e "rosrun octomap_server_clear octomap_server_clear" & sleep 1
+#xterm -geometry 80x36+0+600 -e "rosrun rqt_reconfigure rqt_reconfigure" &
+
+
+

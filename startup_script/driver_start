@@ -1,0 +1,40 @@
+#!/bin/bash
+source /opt/ros/melodic/setup.bash 
+source ~/catkin_ws_drivers/devel/setup.bash
+
+# Reduce latency kernel to 1ms
+for file in $(ls /sys/bus/usb-serial/devices/); do
+  value=`cat /sys/bus/usb-serial/devices/$file/latency_timer`
+  if [ $value -gt 1 ]; then
+    echo "Setting low_latency mode for $file"
+    sudo sh -c "echo 1 > /sys/bus/usb-serial/devices/$file/latency_timer"
+  fi
+done
+
+
+xterm -geometry 80x36+1000+1000 -e "echo 'dji' | sudo -S setserial /dev/serial/by-id/usb-1027_Time_Domain_P440_200-if00 low_latency" & sleep 1
+xterm -geometry 80x36+1000+1000 -e "echo 'dji' | sudo -S setserial /dev/serial/by-id/usb-1027_Time_Domain_P440_200-if00 low_latency" & sleep 1
+xterm -geometry 80x36+1000+1000 -e "echo 'dji' | sudo -S setserial /dev/serial/by-id/usb-FTDI_USB-RS232_Cable_FT2QSUMP-if00-port0 low_latency" & sleep 1 
+xterm -geometry 80x36+1000+1000 -e "echo 'dji' | sudo -S chmod a+rw /dev/serial/by-id/usb-1027_Time_Domain_P440_200-if00" & sleep 1
+xterm -geometry 80x36+1000+1000 -e "echo 'dji' | sudo -S chmod a+rw /dev/serial/by-id/usb-1027_Time_Domain_P440_201-if00" & sleep 1 
+xterm -geometry 80x36+1000+1000 -e "echo 'dji' | sudo -S chmod a+rw /dev/serial/by-id/usb-FTDI_USB-RS232_Cable_FT2QSUMP-if00-port0 low_latency" & sleep 1 
+
+
+xterm -geometry 80x20+0+890 -e "roslaunch ouster_ros os1x2.launch os1_hostname:=os1-991924000164.local os1_hostname2:=os1-991901000605.local os1_udp_dest:=10.5.6.1 os1_udp_dest2:=10.5.5.1"  & sleep 2 
+xterm -geometry 80x20+0+000 -e "taskset -c 1 roslaunch ueye_cam ueye.launch" & sleep 2
+xterm -geometry 80x20+0+300 -e "taskset -c 2 roslaunch /home/dji/catkin_ws/src/Onboard-SDK-ROS-3.8/dji_sdk/launch/sdk.launch" & sleep 1 
+xterm -geometry 80x20+0+590 -e "taskset -c 3 roslaunch imu_vn_100 vn_100_cont.launch" & sleep 2
+
+
+xterm -geometry 80x20+500+000 -e "taskset -c 0 roslaunch uwb_driver uwb0_driver.launch" & sleep 2
+xterm -geometry 80x20+500+300 -e "taskset -c 0 roslaunch uwb_driver uwb1_driver.launch" & sleep 2
+xterm -geometry 80x20+500+590 -e "taskset -c 0 roslaunch uwb_driver sc_uwb.launch" & sleep 2
+
+xterm -hold -geometry 80x16+500+890 -e "rosrun uwb_driver rnwatch"  & sleep 3 
+
+xterm -fa 'Monospace' -fs 18 -geometry 80x16+1000+000 -e "rostopic hz /os1_cloud_node1/points /os1_cloud_node2/points /imu/imu /left/image_raw /right/image_raw /uwb_endorange_info" & sleep 2
+
+
+
+
+
