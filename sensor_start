@@ -11,7 +11,7 @@ xterm -T "Launch Livox" -geometry 80x20+0+0 -e "roslaunch livox_ros_driver livox
 # Launch the dji osdk
 xterm -T "Launch OSDK" -geometry 80x20+0+320 -e "roslaunch dji_osdk_ros dji_vehicle_node.launch" & sleep 2
 # Call the camera service
-(sleep 6; rosservice call /stereo_vga_subscription '{vga_freq: 0, front_vga: 1, unsubscribe_vga: 0}') & sleep 2 #Auto enable the dji stereo
+(sleep 10; rosservice call /stereo_vga_subscription '{vga_freq: 0, front_vga: 1, unsubscribe_vga: 0}') & sleep 2 #Auto enable the dji stereo
 
 #xterm -geometry 80x20+0+590 -e "source ~/dev_ws/devel/setup.bash && roslaunch nlink_parser linktrack_atv.launch" & sleep 2
 
