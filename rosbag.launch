@@ -2,7 +2,9 @@
 
 <node required="false" pkg="rosbag" type="record" name="mybag"
       args=" -o /home/nuc/bags/tmn_ 
-            /livox/lidar 
+            /livox/lidar
+            /livox/imu
+            /pylon_camera_node/image_raw
             /dji_osdk_ros/stereo_vga_front_left_images 
             /dji_osdk_ros/stereo_vga_front_right_images 
             /dji_osdk_ros/imu" />
