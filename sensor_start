@@ -29,15 +29,11 @@ xterm -T "Launch D455" -geometry 80x15+0+350 -e "roslaunch realsense2_camera rs_
 
 #xterm -geometry 80x20+0+590 -e "source ~/dev_ws/devel/setup.bash && roslaunch nlink_parser linktrack_atv.launch" & sleep 2
 
-# # Launch the pylon camera node
-# xterm -T "Launch OSDK" -geometry 80x20+0+320 -e "roslaunch pylon_camera pylon_camera_node.launch" & sleep 2
-
 # Inspect the rates
-xterm -T "Subscribed topics" -fa 'Monospace' -fs 18 -geometry 98x08+610+0 -e \
-"rostopic hz /livox/lidar /vectornav/IMU /os_cloud_node/imu /os_cloud_node/points /rsD455_node0/color/image_raw /rsD455_node1/color/image_raw" & sleep 2
-(sleep 3; wmctrl -r 'Subscribed topics' -e '0,568,0,1362,236') #Adjust the window for subscription status
+xterm -T "Subscribed topics" -fa 'Monospace' -fs 10 -geometry 98x08+610+0 -e \
+"rostopic hz /vectornav/IMU /os_cloud_node/imu /os_cloud_node/points /livox/lidar /rsD455_node0/imu /rsD455_node0/color/image_raw /rsD455_node1/imu /rsD455_node1/color/image_raw" & sleep 2
+(sleep 3; wmctrl -r 'Subscribed topics' -e '0,550,0,680,245') #Adjust the window for subscription status
 
-# Launch and position the window
-# xterm -T "rqt_image_view xterm" -fa 'Monospace' -fs 18 -geometry 5x5+0+0 -e "rqt_image_view /dji_osdk_ros/stereo_vga_front_right_images" & sleep 2
-# (sleep 3; wmctrl -r 'rqt_image_view__ImageView - rqt' -e '0,561,362,485,756' \
-#        & wmctrl -r 'rqt_image_view xterm' -e '0,68,1080,172,05') #Adjust the rqt view
+# Show the cpu
+xterm -T "CPU load" -fa 'Monospace' -fs 10 -geometry 98x08+610+0 -e "htop" & sleep 2
+(sleep 3; wmctrl -r 'CPU load' -e '0,1240,0,680,245') #Adjust the window for subscription status

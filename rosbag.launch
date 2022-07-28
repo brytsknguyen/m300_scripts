@@ -2,12 +2,23 @@
 
 <node required="false" pkg="rosbag" type="record" name="mybag"
       args=" -o /home/nuc/bags/tmn_ 
-            /livox/lidar
-            /livox/imu
-            /pylon_camera_node/image_raw
-            /dji_osdk_ros/stereo_vga_front_left_images 
-            /dji_osdk_ros/stereo_vga_front_right_images 
-            /dji_osdk_ros/imu" />
+                /livox/lidar
+                /livox/imu
+                /rsD455_node0/imu
+                /rsD455_node0/color/image_raw
+                /rsD455_node0/infra1/image_rect_raw
+                /rsD455_node0/infra2/image_rect_raw
+                /rsD455_node1/imu
+                /rsD455_node1/color/image_raw
+                /rsD455_node1/infra1/image_rect_raw
+                /rsD455_node1/infra2/image_rect_raw
+                /os_cloud_node/imu
+                /os_cloud_node/points
+                /vectornav/GPS
+                /vectornav/IMU
+                /vectornav/Mag
+                /vectornav/Pres
+                /vectornav/Temp" />
 </launch>
 
 
